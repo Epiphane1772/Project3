@@ -9,11 +9,7 @@ import Foundation
 
 print("Hello, World!")
 
-var param = Character
-var game = GameExample(param)
-var letsee = ""
+var game = GameExample()
 
 game.start()
-game.printtype()
-letsee = readLine()!
 
