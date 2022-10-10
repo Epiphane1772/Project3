@@ -7,9 +7,6 @@
 
 import Foundation
 
-print("Hello, World!")
-
 var game = GameExample()
 
 game.start()
-

@@ -7,11 +7,10 @@
 
 import Foundation
 
-class MotherClass {
-    
-    private let name: String
-    private let life: Int
-    private let weapon: Weapon
+class Character {
+    let name: String
+    let life: Int
+    let weapon: Weapon
     
     init(name: String, life: Int, weapon: Weapon) {
         self.name = name

@@ -8,29 +8,55 @@
 import Foundation
 
 final class GameExample {
-    var character: MotherClass
+    let maxCharacters = 3
+    var player1: Player?
+    var player2: Player?
+    var names = [String]()
     
-    init(character: MotherClass) {
-        self.character = character
-    }
+    init() {}
     
     func start() {
-        // read name...
-        let name = readLine()!
-        // then read type choice
-        let userChoice = readLine()!
-        // var character: MotherClass
-        
-        switch userChoice {
-        case "1":
-            character = FirstSubclass(name: name, life: 100, weapon: Weapon(name: "Axe", strenght: 20))
-        case "2":
-            character = SecondSubclass(name: name, life: 200, weapon: Weapon(name: "Rifle", strenght: 50))
-        default: break // This case must be handled
-        }
+        player1 = initializePlayer(playerNumber: 1)
+        player2 = initializePlayer(playerNumber: 2)
+        recap()
     }
+    
+    private func initializePlayer(playerNumber: Int) -> Player {
+        print("Player \(playerNumber) enter your name")
+        var name = game.getName()
+        let player = Player(name: name)
+        print("\(player.name) choose your team!")
+        for i in 0...maxCharacters - 1 {
+            print("Enter character number \(i + 1)'s name:")
+            name = game.getName()
+            let characterName = name
+            print("Enter 1 for warrior, 2 for magus, 3 for dwarf")
+            let characterChoice = readLine()!
+            player.appendCharacter(name: characterName, userChoice: characterChoice)
+        }
+        
+        return player
+    }
+    
+    func getName() -> String {
+        var name = readLine()!
+        while names.contains(name) {
+            print("This name is already taken, enter another name:")
+            name = readLine()!
+        }
+        names.append(name)
+        return name
+    }
+    
     func printtype() {
        //  print(game.character)
     }
-
+    
+    func recap() {
+        print("")
+        print("RECAP:")
+        print("")
+        print("\(player1!.name):")
+        print("\(player1!.team[0]):")
+    }
   }

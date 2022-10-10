@@ -7,4 +7,6 @@
 
 import Foundation
 
-final class FirstSubclass: MotherClass {}
+final class Warrior: Character {
+    let type = "Warrior"
+}
