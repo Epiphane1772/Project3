@@ -8,5 +8,6 @@
 import Foundation
 
 final class Dwarf: Character {
-    let type = "D"
+    let type = "Dwarf"
+    let strike = 100
 }

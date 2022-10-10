@@ -9,4 +9,5 @@ import Foundation
 
 final class Magus: Character {
     let type = "Magus"
+    let strike = 50
 }

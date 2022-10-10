@@ -19,6 +19,7 @@ final class GameExample {
         player1 = initializePlayer(playerNumber: 1)
         player2 = initializePlayer(playerNumber: 2)
         recap()
+        
     }
     
     private func initializePlayer(playerNumber: Int) -> Player {
@@ -53,13 +54,25 @@ final class GameExample {
     }
     
     func recap() {
+        func displayTeam(player: Player) {
+            print("\(player.name)'s team:")
+            for i in 0...2 {
+                print("\(player.team[i].name) weapon: \(player.team[i].weapon), life: \(player.team[i].life) ")
+            }
+        }
         print("")
         print("RECAP:")
         print("")
         print("\(player1!.name):")
-        for item in player1!.team {
-            print("\(player1!.team[<#Range<Int>#>]):")
+        displayTeam(player: player1!)
+        displayTeam(player: player2!)
+        
+    }
+    
+    func firht() {
+        func strike(striker: Character, target: Character) {
+            target.life = target.life - striker.weapon
         }
-   }
+    }
   }
 
