@@ -6,7 +6,7 @@
 //
 
 import Foundation
-warf"
+
 final class Dwarf: Character {
     let type = "D"
 }

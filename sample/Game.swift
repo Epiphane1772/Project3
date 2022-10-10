@@ -57,6 +57,9 @@ final class GameExample {
         print("RECAP:")
         print("")
         print("\(player1!.name):")
-        print("\(player1!.team[0]):")
-    }
+        for item in player1!.team {
+            print("\(player1!.team[<#Range<Int>#>]):")
+        }
+   }
   }
+

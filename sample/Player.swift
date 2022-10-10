@@ -33,7 +33,7 @@ final class Player {
     }
     
     func getPlayerName() -> String {
-        var name = game.getName()
+        let name = game.getName()
         game.names.append(name)
         return name
     
