@@ -4,7 +4,6 @@
 //
 //  Created by Stephane Lefebvre on 10/9/22.
 //
-
 import Foundation
 
 final class Player {

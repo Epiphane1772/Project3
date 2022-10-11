@@ -9,7 +9,7 @@ import Foundation
 
 class Weapon {
     
-    private let name: String
+    let name: String
     let strikeStrength: Int
     
     init(name: String, strikeStrength: Int) {

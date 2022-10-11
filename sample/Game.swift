@@ -93,21 +93,55 @@ final class Game {
     
     func fight() {
         var choice = ""
+        recap()
         repeat {
             if (turn == 1) {
+                print("Player 1:")
                 print("Choose your striker:")
                 displayTeam(player: player1!)
                 choice = readLine()!
-                striker = player1!.team[Int(choice)!]
+                striker = player1!.team[Int(choice)! - 1]
+                if striker!.weapon.name == "Wand" {
+                    print("Choose who you are going to heal:")
+                    displayTeam(player: player1!)
+                    choice = readLine()!
+                    target = player1!.team[Int(choice)! - 1]
+                    heal(character: target!)
+                    recap()
+                }
+                else {
+                    print("Choose who you are going to strike:")
+                    displayTeam(player: player2!)
+                    choice = readLine()!
+                    target = player2!.team[Int(choice)! - 1]
+                    strike(character: target!)
+                    recap()
+                }
                 turn = 2
             }
             else {
-                print("player2 is playing")
+                print("Player 2:")
                 print("Choose your striker:")
                 displayTeam(player: player2!)
                 choice = readLine()!
-                striker = player2!.team[Int(choice)!]
-                turn = 1
+                striker = player2!.team[Int(choice)! - 1]
+                if striker!.weapon.name == "Wand" {
+                    print("Choose who you are going to heal:")
+                    displayTeam(player: player2!)
+                    choice = readLine()!
+                    target = player2!.team[Int(choice)! - 1]
+                    heal(character: target!)
+                    recap()
+                }
+                else {
+                    print("Choose who you are going to strike:")
+                    displayTeam(player: player1!)
+                    choice = readLine()!
+                    target = player1!.team[Int(choice)! - 1]
+                    strike(character: target!)
+                    recap()
+                }
+                turn = 2
             }
         } while !oneTeamIsDead()
     }
@@ -132,6 +166,14 @@ final class Game {
         for i in 0...3 {
             print("\(i + 1) for \(player.team[i])")
         }
+    }
+    
+    func heal(character: Character) {
+        character.life += (striker?.weapon.strikeStrength)!
+    }
+    
+    func strike(character: Character) {
+        character.life -= (striker?.weapon.strikeStrength)!
     }
   }
 

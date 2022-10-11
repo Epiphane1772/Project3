@@ -8,6 +8,8 @@
 import Foundation
 
 final class Magus: Character {
-    let type = "Magus"
-    let strikeStrength = 50
+    let kind = "Magus"
+    // let strikeStrength = 50
+    let typeChar = 1
+
 }
