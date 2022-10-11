@@ -7,6 +7,6 @@
 
 import Foundation
 
-var game = GameExample()
+var game = Game()
 
 game.start()

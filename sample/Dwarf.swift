@@ -9,5 +9,5 @@ import Foundation
 
 final class Dwarf: Character {
     let type = "Dwarf"
-    let strike = 100
+    let strikeStrength = 100
 }

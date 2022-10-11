@@ -10,10 +10,10 @@ import Foundation
 class Weapon {
     
     private let name: String
-    private let strenght: Int
+    let strikeStrength: Int
     
-    init(name: String, strenght: Int) {
+    init(name: String, strikeStrength: Int) {
         self.name = name
-        self.strenght = strenght
+        self.strikeStrength = strikeStrength
     }
 }

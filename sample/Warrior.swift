@@ -9,5 +9,5 @@ import Foundation
 
 final class Warrior: Character {
     let type = "Warrior"
-    let strike = 10
+    let strikeStrength = 10
 }

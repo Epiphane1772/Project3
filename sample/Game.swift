@@ -7,17 +7,27 @@
 
 import Foundation
 
-final class GameExample {
+final class Game {
     let maxCharacters = 3
     var player1: Player?
     var player2: Player?
     var names = [String]()
+    var winner = 0
+    var looser = 0
+    var turn = 1
+    var striker: Character?
+    var target: Character?
     
-    init() {}
+    init() {
+        
+    }
     
     func start() {
         player1 = initializePlayer(playerNumber: 1)
         player2 = initializePlayer(playerNumber: 2)
+        while !oneTeamIsDead() {
+            fight()
+        }
         recap()
         
     }
@@ -69,9 +79,58 @@ final class GameExample {
         
     }
     
-    func firht() {
-        func strike(striker: Character, target: Character) {
-            target.life = target.life - striker.weapon
+   func oneTeamIsDead() -> Bool {
+       if (isDead(character: player1!.team[0]) &&
+           isDead(character: player1!.team[1]) &&
+           isDead(character: player1!.team[2])) {
+           return true
+       }
+       if (isDead(character: player2!.team[0]) && isDead(character: player2!.team[1]) && isDead(character: player2!.team[2])) {
+           return true
+       }
+       return false
+    }
+    
+    func fight() {
+        var choice = ""
+        repeat {
+            if (turn == 1) {
+                print("Choose your striker:")
+                displayTeam(player: player1!)
+                choice = readLine()!
+                striker = player1!.team[Int(choice)!]
+                turn = 2
+            }
+            else {
+                print("player2 is playing")
+                print("Choose your striker:")
+                displayTeam(player: player2!)
+                choice = readLine()!
+                striker = player2!.team[Int(choice)!]
+                turn = 1
+            }
+        } while !oneTeamIsDead()
+    }
+    
+    func displayTeam(player: Player) {
+        for i in 0...2 {
+            print("\(i + 1) for \(player.team[i]) )")
+        }
+    }
+        func isDead(character: Character) -> Bool {
+            var status = false
+            if character.life <= 0 {
+                status = true
+            }
+            else {
+                status = false
+            }
+            return status
+        }
+       
+    func chooseCharacter(player: Player) {
+        for i in 0...3 {
+            print("\(i + 1) for \(player.team[i])")
         }
     }
   }

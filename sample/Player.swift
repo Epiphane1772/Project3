@@ -20,11 +20,11 @@ final class Player {
         
         switch userChoice {
         case "1":
-            character = Warrior(name: name, life: 100, weapon: Weapon(name: "Sword", strenght: 20))
+            character = Warrior(name: name, life: 100, weapon: Weapon(name: "Sword", strikeStrength: 20))
         case "2":
-            character = Magus(name: name, life: 200, weapon: Weapon(name: "Wand", strenght: 50))
+            character = Magus(name: name, life: 200, weapon: Weapon(name: "Wand", strikeStrength: 50))
         case "3":
-            character = Dwarf(name: name, life: 50, weapon: Weapon(name: "Axe", strenght: 150))
+            character = Dwarf(name: name, life: 50, weapon: Weapon(name: "Axe", strikeStrength: 150))
         default:
             print("You can only enter 1, 2 enter choice")
             break

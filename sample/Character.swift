@@ -9,7 +9,7 @@ import Foundation
 
 class Character {
     let name: String
-    let life: Int
+    var life: Int
     let weapon: Weapon
     
     init(name: String, life: Int, weapon: Weapon) {
