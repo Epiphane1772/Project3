@@ -7,6 +7,7 @@
 
 import Foundation
 
+// Class representing the character dwarf.
 final class Dwarf: Character {
     let kind = "Dwarf"
     let typeChar = 1

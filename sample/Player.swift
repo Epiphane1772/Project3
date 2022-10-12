@@ -6,6 +6,7 @@
 //
 import Foundation
 
+// Defining the players.
 final class Player {
     let name: String
     var team = [Character]()
@@ -14,6 +15,7 @@ final class Player {
         self.name = name
     }
     
+    // Adding character to the team.
     func appendCharacter(name: String, userChoice: String) {
         var character: Character!
         
@@ -25,17 +27,16 @@ final class Player {
         case "3":
             character = Dwarf(name: name, life: 50, weapon: Weapon(name: "Axe", strikeStrength: 150))
         default:
-            print("You can only enter 1, 2 enter choice")
+            print("You can only enter 1, 2 or 3, enter choice:")
             break
         }
         team.append(character)
     }
     
+    // Getting the player;s name.
     func getPlayerName() -> String {
         let name = game.getName()
         game.names.append(name)
         return name
-    
     }
-
 }

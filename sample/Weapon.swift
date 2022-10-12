@@ -7,8 +7,8 @@
 
 import Foundation
 
+// Mother class for the different weapons.
 class Weapon {
-    
     let name: String
     let strikeStrength: Int
     

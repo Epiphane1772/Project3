@@ -7,6 +7,7 @@
 
 import Foundation
 
+// Class representing the players.
 class Character {
     let name: String
     var life: Int
