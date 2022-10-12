@@ -92,6 +92,16 @@ final class Game {
         }
         return false
     }
+    func readChoice(player: Player) -> String{
+        var choice = ""
+        var numRange = 1...player.team.count
+        choice = readLine()!
+        while !numRange.contains(Int(choice)!) {
+            print("You can only enter a number between 1 and \(player.team.count)")
+            choice = readLine()!
+        }
+        return choice
+    }
     
     func fight() {
         var choice = ""
@@ -101,12 +111,12 @@ final class Game {
                 print("Player 1:")
                 print("Choose your striker:")
                 displayTeam(player: player1!)
-                choice = readLine()!
+                choice = readChoice(player: player1!)
                 striker = player1!.team[Int(choice)! - 1]
                 if striker!.weapon.name == "Wand" {
                     print("Choose who you are going to heal:")
                     displayTeam(player: player1!)
-                    choice = readLine()!
+                    choice = readChoice(player: player1!)
                     target = player1!.team[Int(choice)! - 1]
                     heal(character: target!)
                     turn = 2
@@ -115,7 +125,7 @@ final class Game {
                 else {
                     print("Choose who you are going to strike:")
                     displayTeam(player: player2!)
-                    choice = readLine()!
+                    choice = readChoice(player: player2!)
                     target = player2!.team[Int(choice)! - 1]
                     strike(character: target!)
                     removeIfDead(character: target!)
@@ -127,12 +137,12 @@ final class Game {
                 print("Player 2:")
                 print("Choose your striker:")
                 displayTeam(player: player2!)
-                choice = readLine()!
+                choice = readChoice(player: player2!)
                 striker = player2!.team[Int(choice)! - 1]
                 if striker!.weapon.name == "Wand" {
                     print("Choose who you are going to heal:")
                     displayTeam(player: player2!)
-                    choice = readLine()!
+                    choice = readChoice(player: player2!)
                     target = player2!.team[Int(choice)! - 1]
                     heal(character: target!)
                     turn = 1
@@ -141,7 +151,7 @@ final class Game {
                 else {
                     print("Choose who you are going to strike:")
                     displayTeam(player: player1!)
-                    choice = readLine()!
+                    choice = readChoice(player: player1!)
                     target = player1!.team[Int(choice)! - 1]
                     strike(character: target!)
                     removeIfDead(character: target!)
