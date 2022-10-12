@@ -66,8 +66,10 @@ final class Game {
     func recap() {
         func displayTeam(player: Player) {
             print("\(player.name)'s team:")
-            for i in 0...player.team.count - 1 {
-                print("\(player.team[i].name) weapon: \(player.team[i].weapon), life: \(player.team[i].life) ")
+            if player.team.count > 0 {
+                for i in 0...player.team.count - 1 {
+                    print("\(player.team[i].name) weapon: \(player.team[i].weapon.name), life: \(player.team[i].life) ")
+                }
             }
         }
         print("")
@@ -80,14 +82,10 @@ final class Game {
     }
     
     func oneTeamIsDead() -> Bool {
-        if (isDead(character: player1!.team[0]) &&
-            isDead(character: player1!.team[1]) &&
-            isDead(character: player1!.team[2])) {
+        if player1?.team.count == 0 {
             return true
         }
-        if (isDead(character: player2!.team[0]) &&
-            isDead(character: player2!.team[1]) &&
-            isDead(character: player2!.team[2])) {
+        if player2?.team.count == 0 {
             return true
         }
         return false
@@ -106,7 +104,7 @@ final class Game {
     func fight() {
         var choice = ""
         recap()
-        repeat {
+        while !oneTeamIsDead() {
             if (turn == 1) {
                 print("Player 1:")
                 print("Choose your striker:")
@@ -160,7 +158,7 @@ final class Game {
                 }
                 
             }
-        } while !oneTeamIsDead()
+        }
     }
     
     func displayTeam(player: Player) {
@@ -194,7 +192,7 @@ final class Game {
     }
     
     func removeIfDead(character: Character) {
-        for i in 1...(player2?.team.count)! - 1 {
+        for i in 0...(player2?.team.count)! - 1 {
             if (player2?.team[i].life)! <= 0 {
                 player2?.team.remove(at: i)
             }
