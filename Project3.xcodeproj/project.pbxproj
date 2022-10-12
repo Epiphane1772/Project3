@@ -55,7 +55,7 @@
 		F45A871928F1B94600F54C35 = {
 			isa = PBXGroup;
 			children = (
-				F45A872428F1B94600F54C35 /* sample */,
+				F45A872428F1B94600F54C35 /* Project3 */,
 				F45A872328F1B94600F54C35 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -68,7 +68,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		F45A872428F1B94600F54C35 /* sample */ = {
+		F45A872428F1B94600F54C35 /* Project3 */ = {
 			isa = PBXGroup;
 			children = (
 				F45A872528F1B94600F54C35 /* main.swift */,
@@ -80,7 +80,7 @@
 				F4C90CBD28F445CF004041D4 /* Dwarf.swift */,
 				F45A873628F30EDE00F54C35 /* Player.swift */,
 			);
-			path = sample;
+			path = Project3;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
