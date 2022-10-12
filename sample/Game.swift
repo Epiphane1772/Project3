@@ -59,10 +59,6 @@ final class Game {
         return name
     }
     
-    func printtype() {
-        //  print(game.character)
-    }
-    
     func recap() {
         func displayTeam(player: Player) {
             print("\(player.name)'s team:")
@@ -92,7 +88,7 @@ final class Game {
     }
     func readChoice(player: Player) -> String{
         var choice = ""
-        var numRange = 1...player.team.count
+        let numRange = 1...player.team.count
         choice = readLine()!
         while !numRange.contains(Int(choice)!) {
             print("You can only enter a number between 1 and \(player.team.count)")
