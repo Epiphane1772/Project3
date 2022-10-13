@@ -48,4 +48,14 @@ final class Player {
             }
         }
     }
+    
+    
+    // Removing the dead characters from the teams.
+    func removeIfDead(character: Character) {
+        for i in 0...(team.count) - 1 {
+            if (team[i].life) <= 0 {
+                team.remove(at: i)
+            }
+        }
+    }
 }

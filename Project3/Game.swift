@@ -128,11 +128,6 @@ final class Game {
         var choice = ""
         recap()
         while !oneTeamIsDead() {
-            print("DEBUG")
-            print(player1!.team.count)
-          print("DEBUG")
-            print(player2!.team.count)
-        
             if (turn == 1) {
                 print("Player 1:")
                 print("Choose your striker:")
@@ -154,7 +149,7 @@ final class Game {
                     choice = readChoice(player: player2!)
                     target = player2!.team[Int(choice)! - 1]
                     target?.strike(striker: striker!)
-                    removeIfDead(character: target!)
+                    player2!.removeIfDead(character: target!)
                     recap()
                     turn = 2
                 }
@@ -180,30 +175,12 @@ final class Game {
                     choice = readChoice(player: player1!)
                     target = player1!.team[Int(choice)! - 1]
                     target?.strike(striker: striker!)
-                    removeIfDead(character: target!)
+                    player1!.removeIfDead(character: target!)
                     turn = 1
                     recap()
                 }
             }
         }
     }
-    
-//    // Striking function for the fighters.
-//    func strike(character: Character) {
-//        character.life -= (striker?.weapon.strikeStrength)!
-//    }
-//    
-    // Removing the dead characters from the teams.
-    func removeIfDead(character: Character) {
-        for i in 0...(player2?.team.count)! - 1 {
-            if (player2?.team[i].life)! <= 0 {
-                player2?.team.remove(at: i)
-            }
-        for i in 0...(player1?.team.count)! - 1 {
-            if (player1?.team[i].life)! <= 0 {
-                player1?.team.remove(at: i)
-            }
-        }
-    }
 }
-}
+
