@@ -1,6 +1,6 @@
 //
 //  Player.swift
-//  sample
+//  project3
 //
 //  Created by Stephane Lefebvre on 10/9/22.
 //

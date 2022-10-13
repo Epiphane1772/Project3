@@ -1,6 +1,6 @@
 //
 //  main.swift
-//  sample
+//  project3
 //
 //  Created by Stephane Lefebvre on 10/8/22.
 //

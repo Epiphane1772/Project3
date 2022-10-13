@@ -1,6 +1,6 @@
 //
-//  FirstSubClass.swift
-//  sample
+//  Warrior.swift
+//  project3
 //
 //  Created by Stephane Lefebvre on 10/8/22.
 //
