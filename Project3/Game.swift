@@ -53,11 +53,12 @@ final class Game {
     // Getting the name and making sure it is unique.
     func getName() -> String {
         var name = readLine()!
+        // catching simple returns.
         while name == "" {
             print("You must enter something!")
             name = readLine()!
         }
-        // catching simple returns.
+        // Not allowing already existing names.
         while names.contains(name) {
             print("This name is already taken, enter another name:")
             name = readLine()!
@@ -69,20 +70,12 @@ final class Game {
     
     // Building the recapping of the game.
     func recap() {
-        func displayTeam(player: Player) {
-            print("\(player.name)'s team:")
-            if player.team.count > 0 {
-                for i in 0...player.team.count - 1 {
-                    print("\(player.team[i].name) weapon: \(player.team[i].weapon.name), life: \(player.team[i].life) ")
-                }
-            }
-        }
         print("")
         print("RECAP:")
         print("")
         print("\(player1!.name):")
-        displayTeam(player: player1!)
-        displayTeam(player: player2!)
+        player1?.displayTeam()
+        player2?.displayTeam()
         if winner != "" {
             print("The winner is  \(winner)")
         }
@@ -143,24 +136,24 @@ final class Game {
             if (turn == 1) {
                 print("Player 1:")
                 print("Choose your striker:")
-                displayTeam(player: player1!)
+                player1?.displayTeam()
                 choice = readChoice(player: player1!)
                 striker = player1!.team[Int(choice)! - 1]
                 if striker!.weapon.name == "Wand" {
                     print("Choose who you are going to heal:")
-                    displayTeam(player: player1!)
+                    player1?.displayTeam()
                     choice = readChoice(player: player1!)
                     target = player1!.team[Int(choice)! - 1]
-                    heal(character: target!)
+                    target?.heal(striker: striker!)
                     turn = 2
                     recap()
                 }
                 else {
                     print("Choose who you are going to strike:")
-                    displayTeam(player: player2!)
+                    player2?.displayTeam()
                     choice = readChoice(player: player2!)
                     target = player2!.team[Int(choice)! - 1]
-                    strike(character: target!)
+                    target?.strike(striker: striker!)
                     removeIfDead(character: target!)
                     recap()
                     turn = 2
@@ -169,24 +162,24 @@ final class Game {
             else {
                 print("Player 2:")
                 print("Choose your striker:")
-                displayTeam(player: player2!)
+                player2?.displayTeam()
                 choice = readChoice(player: player2!)
                 striker = player2!.team[Int(choice)! - 1]
                 if striker!.weapon.name == "Wand" {
                     print("Choose who you are going to heal:")
-                    displayTeam(player: player2!)
+                    player2?.displayTeam()
                     choice = readChoice(player: player2!)
                     target = player2!.team[Int(choice)! - 1]
-                    heal(character: target!)
+                    target?.heal(striker: striker!)
                     turn = 1
                     recap()
                 }
                 else {
                     print("Choose who you are going to strike:")
-                    displayTeam(player: player1!)
+                    player1?.displayTeam()
                     choice = readChoice(player: player1!)
                     target = player1!.team[Int(choice)! - 1]
-                    strike(character: target!)
+                    target?.strike(striker: striker!)
                     removeIfDead(character: target!)
                     turn = 1
                     recap()
@@ -195,43 +188,11 @@ final class Game {
         }
     }
     
-    // Displaying the available characters in the teams
-    // allowing players to know their choice of strikers and targets.
-    func displayTeam(player: Player) {
-        for i in 0...player.team.count - 1 {
-            print("\(i + 1) for \(player.team[i]) )")
-        }
-    }
-    
-    // Checking if a character is dead.
-    func isDead(character: Character) -> Bool {
-        var status = false
-        if character.life <= 0 {
-            status = true
-        }
-        else {
-            status = false
-        }
-        return status
-    }
-    
-    // Dsplaying the choice of strikers or targets.
-    func chooseCharacter(player: Player) {
-        for i in 0...player.team.count - 1 {
-            print("\(i + 1) for \(player.team[i])")
-        }
-    }
-    
-    // Healing function for the magus.
-    func heal(character: Character) {
-        character.life += (striker?.weapon.strikeStrength)!
-    }
-    
-    // Striking function for the fighters.
-    func strike(character: Character) {
-        character.life -= (striker?.weapon.strikeStrength)!
-    }
-    
+//    // Striking function for the fighters.
+//    func strike(character: Character) {
+//        character.life -= (striker?.weapon.strikeStrength)!
+//    }
+//    
     // Removing the dead characters from the teams.
     func removeIfDead(character: Character) {
         for i in 0...(player2?.team.count)! - 1 {

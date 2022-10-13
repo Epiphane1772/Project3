@@ -39,4 +39,13 @@ final class Player {
         game.names.append(name)
         return name
     }
+    
+    func displayTeam() {
+        print("\(name)'s team:")
+        if team.count > 0 {
+            for i in 0...team.count - 1 {
+                print("\(team[i].name) weapon: \(team[i].weapon.name), life: \(team[i].life) ")
+            }
+        }
+    }
 }

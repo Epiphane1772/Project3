@@ -18,4 +18,15 @@ class Character {
         self.life = life
         self.weapon = weapon
     }
+    
+    // Healing function for the magus.
+    func heal(striker: Character) {
+        life += (striker.weapon.strikeStrength)
+    }
+    
+    // Striking function for the fighters.
+    func strike(striker: Character) {
+        life -= (striker.weapon.strikeStrength)
+    }
+    
 }
