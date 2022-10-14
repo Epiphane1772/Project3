@@ -12,4 +12,8 @@ final class Dwarf: Character {
     let kind = "Dwarf"
     let typeChar = 1
 
+    
+    override func doAction(target: Character) {
+        target.life -= weapon.strikeStrength
+    }
 }

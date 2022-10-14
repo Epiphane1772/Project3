@@ -10,9 +10,12 @@ import Foundation
 final class Player {
     let name: String
     var team = [Character]()
+    var number = 1
+    var saysItsHisTurn: Bool
     
-    init(name: String) {
+    init(name: String, saysItsHisTurn: Bool) {
         self.name = name
+        self.saysItsHisTurn = saysItsHisTurn
     }
     
     // Adding character to the team.
@@ -34,28 +37,36 @@ final class Player {
     }
     
     // Getting the player;s name.
-    func getPlayerName() -> String {
+    func getPlayerName(){
         let name = game.getName()
         game.names.append(name)
-        return name
     }
     
     func displayTeam() {
+        // making sure team is not empty. if it is stop here.
+        guard !team.isEmpty else {
+            return
+        }
+        
         print("\(name)'s team:")
-        if team.count > 0 {
-            for i in 0...team.count - 1 {
-                print("\(team[i].name) weapon: \(team[i].weapon.name), life: \(team[i].life) ")
-            }
+        
+        // Iterating through team an displaying content.
+        for (index, character) in team.enumerated() {
+            print("\(index + 1) - \(character)")
         }
     }
     
-    
     // Removing the dead characters from the teams.
     func removeIfDead(character: Character) {
-        for i in 0...(team.count) - 1 {
-            if (team[i].life) <= 0 {
-                team.remove(at: i)
-            }
+        // Setting index to character with life smaller thean or equal to zero.
+        guard let index = team.firstIndex(where: { $0 == character && $0.life <= 0 }) else {
+            return
         }
+                              
+        team.remove(at: index)
+    }
+    
+    func isDead() -> Bool {
+        return team.isEmpty
     }
 }

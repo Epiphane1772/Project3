@@ -10,7 +10,7 @@ import Foundation
 // Extensionn to check if the string input represents an integer.
 extension String {
     var isInt: Bool {
-        return Int(self) != nil
+        Int(self) != nil
     }
     
 }
@@ -18,3 +18,4 @@ extension String {
 var game = Game()
 
 game.start()
+

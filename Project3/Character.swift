@@ -19,14 +19,28 @@ class Character {
         self.weapon = weapon
     }
     
+    func doAction(target: Character) {}
+    
     // Healing function for the magus.
     func heal(striker: Character) {
         life += (striker.weapon.strikeStrength)
     }
-    
+
     // Striking function for the fighters.
     func strike(striker: Character) {
         life -= (striker.weapon.strikeStrength)
     }
-    
 }
+
+extension Character: CustomStringConvertible {
+    var description: String {
+        "\(name) weapon: \(weapon), life: \(life)"
+    }
+}
+
+extension Character: Equatable {
+    static func == (lhs: Character, rhs: Character) -> Bool {
+        lhs.name == rhs.name && lhs.life == rhs.life
+    }
+}
+

@@ -10,12 +10,14 @@ import Foundation
 // Declaration of the main class Game.
 final class Game {
     let maxCharacters = 3
+    var rounds = 0
     var player1: Player?
     var player2: Player?
+    var swapper: Player?
+    var playerStriking: Player?
+    var playerNotStriking: Player?
     var names = [String]()
     var winner = ""
-    var looser = ""
-    var turn = 1
     var striker: Character?
     var target: Character?
     
@@ -25,8 +27,14 @@ final class Game {
     func start() {
         player1 = initializePlayer(playerNumber: 1)
         player2 = initializePlayer(playerNumber: 2)
-        while !oneTeamIsDead() {
-            // Starting the kfight.
+        player1?.number = 1
+        player2?.number = 2
+        player1?.saysItsHisTurn = true
+        player2?.saysItsHisTurn = false
+        playerStriking = player1
+        playerNotStriking = player2
+        while !oneTeamIsDecimated() {
+            // Starting the fight.
             fight()
         }
         // Recapping the game.
@@ -37,7 +45,7 @@ final class Game {
     private func initializePlayer(playerNumber: Int) -> Player {
         print("Player \(playerNumber) enter your name")
         var name = game.getName()
-        let player = Player(name: name)
+        let player = Player(name: name, saysItsHisTurn: true)
         print("\(player.name) choose your team!")
         for i in 0...maxCharacters - 1 {
             print("Enter character number \(i + 1)'s name:")
@@ -72,8 +80,8 @@ final class Game {
     func recap() {
         print("")
         print("RECAP:")
-        print("")
-        print("\(player1!.name):")
+        print("Number of rounds: \(rounds)")
+        print("\(player1?.name ?? ""):")
         player1?.displayTeam()
         player2?.displayTeam()
         if winner != "" {
@@ -82,16 +90,15 @@ final class Game {
     }
     
     // Checking if one of the player's team is decimated.
-    func oneTeamIsDead() -> Bool {
-        if player1?.team.count == 0 {
-            winner = player2!.name
-            looser = player1!.name
+    func oneTeamIsDecimated() -> Bool {
+        guard let player1, let player2 else { return false }
+        
+        if player1.isDead() {
+            winner = player2.name
             return true
-        }
-        if player2?.team.count == 0 {
-            winner = player1!.name
-            looser = player2!.name
-          return true
+        } else if player2.isDead() {
+            winner = player1.name
+            return true
         }
         return false
     }
@@ -127,58 +134,34 @@ final class Game {
     func fight() {
         var choice = ""
         recap()
-        while !oneTeamIsDead() {
-            if (turn == 1) {
-                print("\(player1!.name):")
-                print("Choose your striker:")
-                player1?.displayTeam()
-                choice = readChoice(player: player1!)
-                striker = player1!.team[Int(choice)! - 1]
-                if striker!.weapon.name == "Wand" {
-                    print("Choose who you are going to heal:")
-                    player1?.displayTeam()
-                    choice = readChoice(player: player1!)
-                    target = player1!.team[Int(choice)! - 1]
-                    target?.heal(striker: striker!)
-                    turn = 2
-                    recap()
-                }
-                else {
-                    print("Choose who you are going to strike:")
-                    player2?.displayTeam()
-                    choice = readChoice(player: player2!)
-                    target = player2!.team[Int(choice)! - 1]
-                    target?.strike(striker: striker!)
-                    player2!.removeIfDead(character: target!)
-                    recap()
-                    turn = 2
-                }
+        while !oneTeamIsDecimated() {
+            print("Player \(playerStriking!.number):")
+            print("Choose your striker:")
+            playerStriking!.displayTeam()
+            choice = readChoice(player: playerStriking!)
+            striker = playerStriking!.team[Int(choice)! - 1]
+            if striker!.weapon.name == "Wand" {
+                print("Choose who you are going to heal:")
+                playerStriking?.displayTeam()
+                choice = readChoice(player: playerStriking!)
+                target = playerStriking!.team[Int(choice)! - 1]
+                target?.heal(striker: striker!)
+                swapper = playerStriking
+                playerStriking = playerNotStriking
+                playerNotStriking = swapper
+                recap()
             }
             else {
-                print("\(player2!.name):")
-                print("Choose your striker:")
-                player2?.displayTeam()
-                choice = readChoice(player: player2!)
-                striker = player2!.team[Int(choice)! - 1]
-                if striker!.weapon.name == "Wand" {
-                    print("Choose who you are going to heal:")
-                    player2?.displayTeam()
-                    choice = readChoice(player: player2!)
-                    target = player2!.team[Int(choice)! - 1]
-                    target?.heal(striker: striker!)
-                    turn = 1
-                    recap()
-                }
-                else {
-                    print("Choose who you are going to strike:")
-                    player1?.displayTeam()
-                    choice = readChoice(player: player1!)
-                    target = player1!.team[Int(choice)! - 1]
-                    target?.strike(striker: striker!)
-                    player1!.removeIfDead(character: target!)
-                    turn = 1
-                    recap()
-                }
+                print("Choose who you are going to strike:")
+                playerNotStriking?.displayTeam()
+                choice = readChoice(player: playerNotStriking!)
+                target = playerNotStriking!.team[Int(choice)! - 1]
+                target?.strike(striker: striker!)
+                playerNotStriking!.removeIfDead(character: target!)
+                recap()
+                swapper = playerStriking
+                playerStriking = playerNotStriking
+                playerNotStriking = swapper
             }
         }
     }
