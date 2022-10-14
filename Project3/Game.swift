@@ -129,7 +129,7 @@ final class Game {
         recap()
         while !oneTeamIsDead() {
             if (turn == 1) {
-                print("Player 1:")
+                print("\(player1!.name):")
                 print("Choose your striker:")
                 player1?.displayTeam()
                 choice = readChoice(player: player1!)
@@ -155,7 +155,7 @@ final class Game {
                 }
             }
             else {
-                print("Player 2:")
+                print("\(player2!.name):")
                 print("Choose your striker:")
                 player2?.displayTeam()
                 choice = readChoice(player: player2!)
