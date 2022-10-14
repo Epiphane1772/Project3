@@ -43,4 +43,3 @@ extension Character: Equatable {
         lhs.name == rhs.name && lhs.life == rhs.life
     }
 }
-

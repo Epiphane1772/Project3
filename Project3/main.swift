@@ -12,7 +12,6 @@ extension String {
     var isInt: Bool {
         Int(self) != nil
     }
-    
 }
 
 var game = Game()

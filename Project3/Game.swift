@@ -135,7 +135,10 @@ final class Game {
         var choice = ""
         recap()
         while !oneTeamIsDecimated() {
-            print("Player \(playerStriking!.number):")
+            print("DEBUG")
+            print(playerStriking!.name)
+            print("DEBUG")
+            print("\(playerStriking!.name):")
             print("Choose your striker:")
             playerStriking!.displayTeam()
             choice = readChoice(player: playerStriking!)
