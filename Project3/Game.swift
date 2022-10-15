@@ -135,9 +135,7 @@ final class Game {
         var choice = ""
         recap()
         while !oneTeamIsDecimated() {
-            print("DEBUG")
-            print(playerStriking!.name)
-            print("DEBUG")
+            rounds += 1
             print("\(playerStriking!.name):")
             print("Choose your striker:")
             playerStriking!.displayTeam()

@@ -11,8 +11,4 @@ import Foundation
 final class Warrior: Character {
     let kind = "Warrior"
     let typeChar = 1
-    
-    override func doAction(target: Character) {
-        target.life -= weapon.strikeStrength
-    }
 }
