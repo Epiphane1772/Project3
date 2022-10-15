@@ -10,5 +10,4 @@ import Foundation
 // Class representing the character warrior.
 final class Warrior: Character {
     let kind = "Warrior"
-    let typeChar = 1
 }
