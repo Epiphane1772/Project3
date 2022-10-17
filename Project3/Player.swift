@@ -52,7 +52,8 @@ final class Player {
         
         // Iterating through team an displaying content.
         for (index, character) in team.enumerated() {
-            print("\(index + 1) - \(character)")
+            print("\(index + 1) - \(character.name) weapon: \(character.weapon.name) life: \(character.life)")
+           // print("\(index + 1) - \(character)")
         }
     }
     

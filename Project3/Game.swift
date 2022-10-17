@@ -4,7 +4,6 @@
 //
 //  Created by Stephane Lefebvre on 10/8/22.
 //
-
 import Foundation
 
 // Declaration of the main class Game.
@@ -183,4 +182,3 @@ final class Game {
         }
     }
 }
-
