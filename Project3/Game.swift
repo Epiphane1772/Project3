@@ -40,6 +40,7 @@ final class Game {
         recap()
     }
     
+    // Making sure the choice is in the range of the nuber of characters
     func readInCharactersRange() -> String{
         var choice: String!
         let numRange = 1...maxCharacters
