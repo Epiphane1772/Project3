@@ -41,6 +41,22 @@ final class Game {
         recap()
     }
     
+    func readInCharactersRange() -> String{
+        var choice: String!
+        let numRange = 1...maxCharacters
+        choice = readLine()!
+        while !choice.isInt {
+            print("You must enter an integer between 1 and \(maxCharacters) !")
+            choice = readInt()
+        }
+        while !numRange.contains(Int(choice)!) {
+            print("You can only enter a number between 1 and \(maxCharacters)")
+            choice = readInt()
+        }
+        return choice
+    }
+    
+    
     // Initialising player's team.
     private func initializePlayer(playerNumber: Int) -> Player {
         print("Player \(playerNumber) enter your name")
@@ -52,7 +68,7 @@ final class Game {
             name = game.getName()
             let characterName = name
             print("Enter 1 for warrior, 2 for magus, 3 for dwarf")
-            let characterChoice = readInt()
+            let characterChoice = readInCharactersRange()
             player.appendCharacter(name: characterName, userChoice: characterChoice)
         }
         return player
@@ -125,7 +141,7 @@ final class Game {
         }
         while !numRange.contains(Int(choice)!) {
             print("You can only enter a number between 1 and \(player.team.count)")
-            choice = readLine()!
+            choice = readChoice(player: player)
         }
         return choice
     }

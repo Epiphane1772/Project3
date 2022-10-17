@@ -9,5 +9,9 @@ import Foundation
 
 // Class representing the character magus.
 final class Magus: Character {
-    let kind = "Magus"   // let typeChar = 1
+    let kind = "Magus"
+    
+    override func doAction(striker: Character) {
+        life += (striker.weapon.strikeStrength)
+    }
 }

@@ -33,7 +33,7 @@ final class Player {
             print("You can only enter 1, 2 or 3, enter choice:")
             break
         }
-        team.append(character)
+            team.append(character)
     }
     
     // Getting the player;s name.
