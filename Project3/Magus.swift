@@ -11,7 +11,7 @@ import Foundation
 final class Magus: Character {
     let kind = "Magus"
     
-    override func doAction(striker: Character) {
-        life += (striker.weapon.strikeStrength)
+    override func doAction(target: Character?) {
+        target?.life += weapon.strikeStrength
     }
 }

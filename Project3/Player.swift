@@ -11,11 +11,9 @@ final class Player {
     let name: String
     var team = [Character]()
     var number = 1
-    var saysItsHisTurn: Bool
     
-    init(name: String, saysItsHisTurn: Bool) {
+    init(name: String) {
         self.name = name
-        self.saysItsHisTurn = saysItsHisTurn
     }
     
     // Adding character to the team.
@@ -33,11 +31,12 @@ final class Player {
             print("You can only enter 1, 2 or 3, enter choice:")
             break
         }
-            team.append(character)
+        
+        team.append(character)
     }
     
     // Getting the player;s name.
-    func getPlayerName(){
+    func getPlayerName() {
         let name = game.getName()
         game.names.append(name)
     }
@@ -57,17 +56,10 @@ final class Player {
         }
     }
     
-    // Removing the dead characters from the teams.
-    func removeIfDead(character: Character) {
-        // Setting index to character with life smaller thean or equal to zero.
-        guard let index = team.firstIndex(where: { $0 == character && $0.life <= 0 }) else {
-            return
-        }
-                              
-        team.remove(at: index)
-    }
-    
     func isDead() -> Bool {
+        team.removeAll { character in
+            character.life <= 0
+        }
         return team.isEmpty
     }
 }

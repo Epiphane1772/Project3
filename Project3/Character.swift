@@ -18,17 +18,8 @@ class Character {
         self.weapon = weapon
     }
     
-    func doAction(striker: Character) {
-        life -= (striker.weapon.strikeStrength)
-    }
-    // Healing function for the magus.
-    func heal(striker: Character) {
-        life += (striker.weapon.strikeStrength)
-    }
-
-    // Striking function for the fighters.
-    func strike(striker: Character) {
-        life -= (striker.weapon.strikeStrength)
+    func doAction(target: Character?) {
+        target?.life -= weapon.strikeStrength
     }
 }
 

@@ -8,19 +8,18 @@ import Foundation
 
 // Declaration of the main class Game.
 final class Game {
-    let maxCharacters = 3
-    var rounds = 0
-    var player1: Player?
-    var player2: Player?
-    var swapper: Player?
-    var playerStriking: Player?
-    var playerNotStriking: Player?
-    var names = [String]()
-    var winner = ""
-    var striker: Character?
-    var target: Character?
     
-    init() {}
+    private let maxCharacters = 3
+    private var rounds = 0
+    private var player1: Player?
+    private var player2: Player?
+    private var playerStriking: Player?
+    private var playerNotStriking: Player?
+    private var winner = ""
+    private var striker: Character?
+    private var target: Character?
+    
+    var names = [String]()
     
     // Starting the game.
     func start() {
@@ -28,8 +27,6 @@ final class Game {
         player2 = initializePlayer(playerNumber: 2)
         player1?.number = 1
         player2?.number = 2
-        player1?.saysItsHisTurn = true
-        player2?.saysItsHisTurn = false
         playerStriking = player1
         playerNotStriking = player2
         while !oneTeamIsDecimated() {
@@ -61,7 +58,7 @@ final class Game {
     private func initializePlayer(playerNumber: Int) -> Player {
         print("Player \(playerNumber) enter your name")
         var name = game.getName()
-        let player = Player(name: name, saysItsHisTurn: true)
+        let player = Player(name: name)
         print("\(player.name) choose your team!")
         for i in 0...maxCharacters - 1 {
             print("Enter character number \(i + 1)'s name:")
@@ -157,29 +154,22 @@ final class Game {
             playerStriking!.displayTeam()
             choice = readChoice(player: playerStriking!)
             striker = playerStriking!.team[Int(choice)! - 1]
-            if striker!.weapon.name == "Wand" {
+            
+            if striker is Magus {
                 print("Choose who you are going to heal:")
                 playerStriking?.displayTeam()
                 choice = readChoice(player: playerStriking!)
                 target = playerStriking!.team[Int(choice)! - 1]
-                target?.heal(striker: striker!)
-                swapper = playerStriking
-                playerStriking = playerNotStriking
-                playerNotStriking = swapper
-                recap()
-            }
-            else {
+            } else {
                 print("Choose who you are going to strike:")
                 playerNotStriking?.displayTeam()
                 choice = readChoice(player: playerNotStriking!)
                 target = playerNotStriking!.team[Int(choice)! - 1]
-                target?.strike(striker: striker!)
-                playerNotStriking!.removeIfDead(character: target!)
-                recap()
-                swapper = playerStriking
-                playerStriking = playerNotStriking
-                playerNotStriking = swapper
             }
+            
+            striker?.doAction(target: target)
+            
+            swap(&playerStriking, &playerNotStriking)
         }
     }
 }
