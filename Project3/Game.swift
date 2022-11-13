@@ -23,6 +23,7 @@ final class Game {
     
     // Starting the game.
     func start() {
+        print(rules)
         player1 = initializePlayer(playerNumber: 1)
         player2 = initializePlayer(playerNumber: 2)
         player1?.number = 1
@@ -39,9 +40,9 @@ final class Game {
     
     // Making sure the choice is in the range of the nuber of characters
     func readInCharactersRange() -> String{
-        var choice: String!
+//        var choice: String!
         let numRange = 1...maxCharacters
-        choice = readLine()!
+        guard var choice = readLine() else { return "" }
         while !choice.isInt {
             print("You must enter an integer between 1 and \(maxCharacters) !")
             choice = readInt()
@@ -73,16 +74,16 @@ final class Game {
     
     // Getting the name and making sure it is unique.
     func getName() -> String {
-        var name = readLine()!
+        guard var name = readLine() else { return ""}
         // catching simple returns.
         while name == "" {
             print("You must enter something!")
-            name = readLine()!
+            if let name = readLine() {}
         }
         // Not allowing already existing names.
         while names.contains(name) {
             print("This name is already taken, enter another name:")
-            name = readLine()!
+            if let name = readLine() {}
         }
         // Adding name to the list.
         names.append(name)
@@ -118,7 +119,7 @@ final class Game {
     
     // Allowing only strings that represent an integer.
     func readInt() -> String {
-        var choice = readLine()!
+        guard var choice = readLine() else {return ""}
         while !choice.isInt {
             print("You must enter an integer!")
             choice = readLine()!
@@ -129,9 +130,9 @@ final class Game {
     // Only allolwing strings that represent an integer.
     // and limiting to available characters.
     func readChoice(player: Player) -> String{
-        var choice: String!
+//        var choice: String!
         let numRange = 1...player.team.count
-        choice = readLine()!
+        guard var choice = readLine() else {return ""}
         while !choice.isInt {
             print("You must enter an integer!")
             choice = readLine()!

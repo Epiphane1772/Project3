@@ -15,6 +15,7 @@
 		F45A873528F1BDDC00F54C35 /* Magus.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45A873428F1BDDC00F54C35 /* Magus.swift */; };
 		F45A873728F30EDE00F54C35 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45A873628F30EDE00F54C35 /* Player.swift */; };
 		F4C90CBE28F445CF004041D4 /* Dwarf.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C90CBD28F445CF004041D4 /* Dwarf.swift */; };
+		F4CD4AE52907346D00FA73CF /* Rules.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CD4AE42907346D00FA73CF /* Rules.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -39,6 +40,7 @@
 		F45A873428F1BDDC00F54C35 /* Magus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Magus.swift; sourceTree = "<group>"; };
 		F45A873628F30EDE00F54C35 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		F4C90CBD28F445CF004041D4 /* Dwarf.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dwarf.swift; sourceTree = "<group>"; };
+		F4CD4AE42907346D00FA73CF /* Rules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rules.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +81,7 @@
 				F45A873428F1BDDC00F54C35 /* Magus.swift */,
 				F4C90CBD28F445CF004041D4 /* Dwarf.swift */,
 				F45A873628F30EDE00F54C35 /* Player.swift */,
+				F4CD4AE42907346D00FA73CF /* Rules.swift */,
 			);
 			path = Project3;
 			sourceTree = "<group>";
@@ -143,6 +146,7 @@
 			files = (
 				F45A872628F1B94600F54C35 /* main.swift in Sources */,
 				F45A873128F1BD6C00F54C35 /* Character.swift in Sources */,
+				F4CD4AE52907346D00FA73CF /* Rules.swift in Sources */,
 				F4C90CBE28F445CF004041D4 /* Dwarf.swift in Sources */,
 				F45A873328F1BDA400F54C35 /* Warrior.swift in Sources */,
 				F45A872D28F1BCAC00F54C35 /* Game.swift in Sources */,
