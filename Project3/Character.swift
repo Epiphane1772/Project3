@@ -22,15 +22,3 @@ class Character {
         target?.life -= weapon.strikeStrength
     }
 }
-
-extension Character: CustomStringConvertible {
-    var description: String {
-        "\(name) weapon: \(weapon), life: \(life)"
-    }
-}
-
-extension Character: Equatable {
-    static func == (lhs: Character, rhs: Character) -> Bool {
-        lhs.name == rhs.name && lhs.life == rhs.life
-    }
-}

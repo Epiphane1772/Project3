@@ -40,9 +40,8 @@ final class Game {
     
     // Making sure the choice is in the range of the nuber of characters
     func readInCharactersRange() -> String{
-//        var choice: String!
         let numRange = 1...maxCharacters
-        guard var choice = readLine() else { return "" }
+        var choice = readLineSafe()
         while !choice.isInt {
             print("You must enter an integer between 1 and \(maxCharacters) !")
             choice = readInt()
@@ -74,16 +73,16 @@ final class Game {
     
     // Getting the name and making sure it is unique.
     func getName() -> String {
-        guard var name = readLine() else { return ""}
+        var name = readLineSafe()
         // catching simple returns.
         while name == "" {
             print("You must enter something!")
-            if let name = readLine() {}
+            name = readLineSafe()
         }
         // Not allowing already existing names.
         while names.contains(name) {
             print("This name is already taken, enter another name:")
-            if let name = readLine() {}
+            name = readLineSafe()
         }
         // Adding name to the list.
         names.append(name)
@@ -119,10 +118,10 @@ final class Game {
     
     // Allowing only strings that represent an integer.
     func readInt() -> String {
-        guard var choice = readLine() else {return ""}
+        var choice = readLineSafe()
         while !choice.isInt {
             print("You must enter an integer!")
-            choice = readLine()!
+            choice = readLineSafe()
         }
         return choice
     }
@@ -130,12 +129,11 @@ final class Game {
     // Only allolwing strings that represent an integer.
     // and limiting to available characters.
     func readChoice(player: Player) -> String{
-//        var choice: String!
         let numRange = 1...player.team.count
-        guard var choice = readLine() else {return ""}
+        var choice = readLineSafe()
         while !choice.isInt {
             print("You must enter an integer!")
-            choice = readLine()!
+            choice = readLineSafe()
         }
         while !numRange.contains(Int(choice)!) {
             print("You can only enter a number between 1 and \(player.team.count)")
@@ -173,4 +171,13 @@ final class Game {
             swap(&playerStriking, &playerNotStriking)
         }
     }
+    
+    func readLineSafe() -> String {
+        var input: String?
+        while input == nil {
+            input = readLine()
+        }
+        return input ?? ""
+    }
+
 }
